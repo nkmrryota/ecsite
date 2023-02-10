@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+     <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class='container_all'>
+
+  <div class='evalu_border'></div>
+  {% for picture in object.related_picture.all %}
+    {% if forloop.first %}
+      <div class='product_img'><img width="200px" height="200px" src={{ picture.picture.url }}></div>
+    {% endif %}
+  {% endfor %}
+  <div class='product_name'><h3>{{ object.name }}</h3></div>
+  <div class='container_rate'>
+    {% if object.related_evaluationcul.avarageevalu < 0.2 %}
+          <div class="rate"><span class="rate0"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu < 0.7 %}
+          <div class="rate"><span class="rate0-5"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu < 1.2 %}
+          <div class="rate"><span class="rate1"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu < 1.7 %}
+          <div class="rate"><span class="rate1-5"></span> <a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div>
+        {% elif object.related_evaluationcul.avarageevalu < 2.2 %}
+          <div class="rate"><span class="rate2"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu < 2.7 %}
+          <div class="rate"><span class="rate2-5"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu < 3.2 %}
+          <div class="rate"><span class="rate3"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu < 3.7 %}
+          <div class="rate"><span class="rate3-5"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu < 4.2 %}
+          <div class="rate"><span class="rate4"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu < 4.7 %}
+          <div class="rate"><span class="rate4-5"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+        {% elif object.related_evaluationcul.avarageevalu > 4.7 %}
+          <div class="rate"><span class="rate5"></span><a href="{% url 'stores:evalu_list' pk=object.id  %}"> {{ total_count }}件の評価</a></div> 
+    {% endif %}
+  </div>
+  <div class='brand_container'><h6>ブランド: {{ object.manufacturer }}</h6></div>
+  <div class='price_container'><h6>￥{{ object.price }}</h6></div>
+  <div class='stock_container'><h6> 在庫:{{ object.stock }}</h6></div>
+  
+  <div class='cartadd_all'>
+    {% if user.is_authenticated %}
+        {% if object.stock %}
+          {% if is_added %}
+            <div class="btn btn-danger">カートに追加済みです</div>
+          {% else %}
+            <input type="number" id="quantity" name="quantity" min="1" max="{{ object.stock }}">
+            <button id="add_product" type="button" class="btn btn-primary">カートに追加</button>
+          {% endif %}
+        {% endif %}
+        <input name="csrfToken" value="{{ csrf_token }}" type="hidden">
+      {% else %}
+      <input type="number" id="quantity" name="quantity" min="1" max="{{ object.stock }}">
+      {% comment %} request.pathは現在のページを示し、ログイン後に再度ページに戻るように指定している {% endcomment %}
+      <a href="{% url 'accounts:user_login' %}?next={{ request.path }}" class="btn btn-primary">カートに追加</a>
+    {% endif %}
+  </div>      
+  <div class='describe_border'></div>
+  <div class='describe_title'><h6>商品説明:<h6></div>
+  <div class='describe'><h6>{{ object.comment }}<h6></div>
+  
+
+  
+
+
+
+  <div class='evalchart_all'>
+    <span class='one_round'><h6>{{ one_round }}</h6></span>
+    <span class='twe_round'><h6>{{ twe_round }}</h6></span>
+    <span class='three_round'><h6>{{ three_round }}</h6></span>
+    <span class='fore_round'><h6>{{ fore_round }}</h6></span>
+    <span class='five_round'><h6>{{ five_round }}</h6></span>
+    
+    <div class='eval_title'><h3>カスタマーレビュー</h3></div>
+    <table class="charts-css bar show-labels show-data-axes data-spacing-15 hide-data" id="my-chart">
+    <caption> カスタマーレビュー </caption>
+    <thead>
+      <tr>
+        <th scope="col"> Year </th>
+        <th scope="col"> Value </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class='Tr'>
+        <th> 星５つ </th>
+        <td style="--size:{{ five }};"></td>
+      </tr class='Tr'>
+      <tr >
+        <th> 星４つ </th>
+        <td style="--size:{{ fore }}"></td>
+      </tr>
+      <tr class='Tr'>
+        <th> 星３つ </th>
+        <td style="--size:{{ three }}"></td>
+      </tr>
+      <tr class='Tr'>
+        <th> 星２つ </th>
+        <td style="--size:{{ twe }}"></td>
+      </tr>
+      <tr class='Tr'>
+        <th> 星１つ </th>
+        <td style="--size:{{ one }}"></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+
+
+  <div class='evalu_list'>
+    {% for eval in evaluation %}
+        <div>{{ user.username }}</div>
+        <div>
+          {% if eval.evalucount == 1 %}
+            <div class="rate"><span class="rate1"></span></div>
+          {% elif eval.evalucount == 2 %}
+            <div class="rate"><span class="rate2"></span></div>
+          {% elif eval.evalucount == 3 %}
+            <div class="rate"><span class="rate3"></span></div>
+          {% elif eval.evalucount == 4 %}
+            <div class="rate"><span class="rate4"></span></div>
+          {% elif eval.evalucount == 5 %}
+            <div class="rate"><span class="rate5"></span></div>
+          {% endif %} 
+        </div>
+        <div><h6>{{ eval.subject }}</h6></div>
+        <div><h6>{{ eval.date }}にレビュー済み</h6></div>
+        <div><h6>{{ eval.comment }}</h6></div>
+        {% if forloop.last %}
+          <br>
+            <div><a href="{% url 'stores:evalu_list' pk=eval.product.id  %}" class="btn btn-primary">全ての口コミを見る</a></div>
+        {% endif %}
+        <br>
+    {% endfor %}
+  </div>
+ 
+</div>
+
+
+
+
+<script>
+{% comment %} idがadd_productのbuttonが押された時 {% endcomment %}
+{% comment %} idがquantityに入力された値を、左のquantity変数に格納 {% endcomment %}
+{% comment %} $.ajax内に、ajax処理記述 {% endcomment %}
+{% comment %} dataに送信するデータを記述 {% endcomment %}
+$('#add_product').click(function(){
+    var quantity = $("#quantity").val();
+    var token = $('input[name="csrfToken"]').attr('value');
+
+    $.ajaxSetup({
+        beforeSend: function(xhr){
+            xhr.setRequestHeader('X-CSRFToken', token);
+        }
+    })
+    $.ajax({
+        url: "{% url 'stores:add_product' %}",
+        type: "POST",
+        data: {product_id: "{{ object.id }}", quantity: quantity},
+        dataType: "json",
+        success: function(json){
+            if(json.message){
+                $('#add_product').attr('class', 'btn btn-danger');
+                $('#add_product').html('カートに登録済みです');
+                $('#add_product').prop('disabled', true);
+                alert(json.message);
+            }
+        },
+        error: function(error){
+            alert(error.responseJSON.message);
+        }
+    });
+});
+</script>
+{% endblock %}

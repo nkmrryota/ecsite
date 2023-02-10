@@ -1,0 +1,280 @@
+
+{% extends 'base.html' %}
+  {% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class='container_all'>
+
+<div class="col-10 offset-1">
+<form method="get" action="{% url 'stores:product_list' %}">
+<br>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="商品を検索してください" name='product_name' aria-describedby="button-addon2" value="{{ product_name }}">
+  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">実行する</button>
+</div>
+
+{% comment %} <input type="text"  class="form-control" aria-describedby="passwordHelpBlock" name="product_name" value="{{ product_name }}">
+<p><input type="submit" class="btn btn-secondary" value="実行する"/></p>
+<br> {% endcomment %}
+
+<div class="btn_container">
+<div class="btn-group">
+  {% if order_by %}
+    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    並び替え: {{ order_by }}
+  </button>
+  {% else %}
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    並び替え: おすすめ
+  </button>
+  {% endif %}
+  <ul class="dropdown-menu">
+    <li><input type="submit" class="dropdown-item" name="order_by_highprice" value="価格:高い順"/></li>
+    <li><input type="submit" class="dropdown-item" name="order_by_rowprice" value="価格:安い順"/></li>
+    <li><input type="submit" class="dropdown-item" name="order_by_highevalu" value="評価:高い順"/></li>
+  </ul>
+</div>
+</div>
+
+{% comment %} <p>
+  <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    切替ボタン
+  </button>
+</p>
+<div style="min-height: 120px;">
+  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+    <div class="card card-body" style="width: 300px;">
+      これは、水平方向の折り畳みのプレースホルダコンテンツ。デフォルトでは非表示になっており、起動されると表示される。
+    </div>
+  </div>
+</div> {% endcomment %}
+<div class='all_class'>
+
+<div class='search_all'>
+<div class='search_container'>
+<p>価格:
+  <p class='one'><label><input type="radio" name="product_price" value="1" {% if one %}checked{% endif %}>0〜1500円</label></p>
+  <p class='two'><label><input type="radio" name="product_price" value="2" {% if two %}checked{% endif %}>1500~5000円</label></p>
+  <p class='three'><label><input type="radio" name="product_price" value="3" {% if three %}checked{% endif %}>5000~10000円</label></p>
+  <p class='four'><label><input type="radio" name="product_price" value="4" {% if four %}checked{% endif %}>10000~20000円</label></p>
+  <p class='five'><label><input type="radio" name="product_price" value="5" {% if five %}checked{% endif %}>20000円以上</label></p>
+  <p class='six'><label><input type="radio" name="product_price" value="6" {% if six %}checked{% endif %}>全て</label></p>
+</p>
+<br>
+
+<p class='button_title'>商品タイプ:
+  <div class='button_aja'>
+   <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="product_type_name" >
+   {% if product_type_name %}
+    <option value={{ product.product_type }}>{{ product_type_name }}</option>
+   {% else %}
+    <option value={{ product.product_type }}>全て</option>
+   {% endif %}
+    {% for all in product_type_name_all %}
+      <option value={{ all.name }}>{{ all.name }}</option>
+    {% endfor %} 
+      <option value=>全て</option>
+</select>
+</div>
+</p>
+<p class="serch_button"><input type="submit" class="btn btn-secondary" value="実行する"/></p>
+</div>
+</div>
+
+
+
+<table class="table_all">
+<thead>
+</thead>
+<tbody>
+{% for product in object_list %}
+  {% for picture in product.related_picture.all %} 
+    {% if picture.order == 1 %}
+      <tr>
+        <td>
+          <p><img width="200px" height="200px" src={{ picture.picture.url }}></p>
+          <p><a href="{% url 'stores:product_detail' pk=product.id %}">{{ product.name }}</a></p>
+          <p>{{ product.product_type }}</p>
+          <p>{% if product.related_evaluationcul.avarageevalu < 0.2 %}
+          <p><div class="rate"><span class="rate0"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 0.7 %}
+          <p><div class="rate"><span class="rate0-5"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 1.2 %}
+          <p><div class="rate"><span class="rate1"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 1.7 %}
+          <p><div class="rate"><span class="rate1-5"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 2.2 %}
+          <p><div class="rate"><span class="rate2"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 2.7 %}
+          <p><div class="rate"><span class="rate2-5"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 3.2 %}
+          <p><div class="rate"><span class="rate3"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 3.7 %}
+          <p><div class="rate"><span class="rate3-5"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 4.2 %}
+          <p><div class="rate"><span class="rate4"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu < 4.7 %}
+          <p><div class="rate"><span class="rate4-5"></span></div></p>
+        {% elif product.related_evaluationcul.avarageevalu > 4.7 %}
+          <p><div class="rate"><span class="rate5"></span></div></p>
+        {% endif %}
+        <p>{{ product.price }}円</p>
+        </td>
+        {% comment %} <td>{{ product.product_type.name }}</td> {% endcomment %}
+        {% comment %} <td><a href="{% url 'stores:product_detail' pk=product.id %}">{{ product.name }}</a></td>
+        <td>{{ product.price }}円</td> {% endcomment %}
+        {% comment %} <td>{{ product.stock }}個</td> {% endcomment %}
+        {% comment %} <td>{{ product.manufacturer.name }}</td> {% endcomment %}
+        {% comment %} {% if product.related_evaluationcul.avarageevalu < 0.2 %}
+          <td><div class="rate"><span class="rate0"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 0.7 %}
+          <td><div class="rate"><span class="rate0-5"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 1.2 %}
+          <td><div class="rate"><span class="rate1"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 1.7 %}
+          <td><div class="rate"><span class="rate1-5"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 2.2 %}
+          <td><div class="rate"><span class="rate2"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 2.7 %}
+          <td><div class="rate"><span class="rate2-5"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 3.2 %}
+          <td><div class="rate"><span class="rate3"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 3.7 %}
+          <td><div class="rate"><span class="rate3-5"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 4.2 %}
+          <td><div class="rate"><span class="rate4"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu < 4.7 %}
+          <td><div class="rate"><span class="rate4-5"></span></div></td>
+        {% elif product.related_evaluationcul.avarageevalu > 4.7 %}
+          <td><div class="rate"><span class="rate5"></span></div></td>
+        {% endif %} {% endcomment %}
+      </tr>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+</tbody>
+
+</table>
+</div>
+
+
+
+
+
+
+{% comment %} <p>
+  <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseParent" aria-expanded="true" aria-controls="collapseParent">
+    絞り込む
+  </button>
+</p>
+<div class="collapse" id="collapseParent">
+
+  <div class="card card-body">
+<p>
+  <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+    絞り込む
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+
+  <div class="card card-body">
+    <label for="pet-select">商品タイプで絞り込む:</label>
+<select class="form-select form-select-sm" aria-label=".form-select-sm example" name="product_type_name" >
+    <option value={{ product.product_type }}>{{ product_type_name }}</option>
+    {% for all in product_type_name_all %}
+      <option value={{ all.name }}>{{ all.name }}</option>
+    {% endfor %} 
+      <option value=>全て</option>
+</select> {% endcomment %}
+{% comment %} selectのnameでデータを選択して、optionのvalueを渡す {% endcomment %}
+{% comment %} <label for="pet-select">値段で絞り込む:</label>
+<select class="form-select form-select-sm" aria-label=".form-select-sm example" name="product_price" >
+    <option value={{ product_price_number }}>{{ product_price }}</option>
+    <option value="1">0〜1500円</option>
+    <option value="2">1500~5000円</option>
+    <option value="3">5000~10000円</option>
+    <option value="4">10000~20000円</option>
+    <option value="5">20000円以上</option>
+    <option value="6">全て</option>
+</select>
+<br> {% endcomment %}
+  {% comment %} viewsではgetを検知する {% endcomment %}
+  {% comment %} <p><input type="submit" class="btn btn-secondary" value="実行する"/></p>
+  </div>
+</div> {% endcomment %}
+{% comment %} <br> {% endcomment %}
+{% comment %} <p>
+  <button class="btn-group dropend" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
+    並び替える
+  </button>
+</p> {% endcomment %}
+{% comment %} <div class="collapse" id="collapseOrder">
+  <div class="card card-body"> {% endcomment %}
+  {% comment %} viewでvalueが送られたらqueryで並び替え処理を行い、下記if文でcheckedを保持 {% endcomment %}
+  {% comment %} <p>
+    <p>値段:
+     昇順<input type="radio" name="order_by"  value="1" {% if ascending %}checked{% endif %} >
+     降順<input type="radio" name="order_by"  value="2" {% if descending %}checked{% endif %} >
+    </p>
+    <p>評価:
+     昇順<input type="radio" name="order_by" value="3" {% if ascending_evalu %}checked{% endif %} >
+     降順<input type="radio" name="order_by"  value="4" {% if descending_evalu %}checked{% endif %} >
+     </p>
+  </p> {% endcomment %}
+  {% comment %} viewsではgetを検知する {% endcomment %}
+  {% comment %} <p><input type="submit" class="btn btn-secondary" value="実行する"/></p>
+
+  </div>
+</div> {% endcomment %}
+
+
+  </div>
+</div>
+
+
+</form>
+
+</div>
+
+</div>
+{% endblock %}
+
+
+
+
+<script>
+{% comment %} idがadd_productのbuttonが押された時 {% endcomment %}
+{% comment %} idがquantityに入力された値を、左のquantity変数に格納 {% endcomment %}
+{% comment %} $.ajax内に、ajax処理記述 {% endcomment %}
+{% comment %} dataに送信するデータを記述 {% endcomment %}
+$('#add_product').click(function(){
+    var quantity = $("#quantity").val();
+    var token = $('input[name="csrfToken"]').attr('value');
+
+    $.ajaxSetup({
+        beforeSend: function(xhr){
+            xhr.setRequestHeader('X-CSRFToken', token);
+        }
+    })
+    $.ajax({
+        url: "{% url 'stores:add_product' %}",
+        type: "POST",
+        data: {product_id: "{{ object.id }}", quantity: quantity},
+        dataType: "json",
+        success: function(json){
+            if(json.message){
+                $('#add_product').attr('class', 'btn btn-danger');
+                $('#add_product').html('カートに登録済みです');
+                $('#add_product').prop('disabled', true);
+                alert(json.message);
+            }
+        },
+        error: function(error){
+            alert(error.responseJSON.message);
+        }
+    });
+});
+</script>

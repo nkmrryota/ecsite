@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/order_list.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class='container_all'>
+
+<div class='head_font'><h1>ご注文リスト</h1></div>
+<div class='return'><a href="{{request.META.HTTP_REFERER}}">お客様情報へ戻る</a></div>
+{% for product in object_list %}
+    {% for picture in product.product.related_picture.all %} 
+        {% if picture.order == 1 %}
+        <div class='list'>
+        <div class='list_one'><img width="200px" height="200px" src={{ picture.picture.url }}></div>
+        <div class='list_two'><a href="{% url 'stores:product_detail' pk=product.product.id %}">{{ product.product.name }}</a></div>
+        <div class='list_three'><h5>{{ product.chekeout_date }}に注文を受け付けました</h5></div>
+        <div class='list_four'><a class="btn btn-primary" href="{% url 'stores:evalu' pk=product.product.id %}">口コミを書く</a></div>
+        </div>
+        <br>
+
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+{% endblock %}
+
+
+</div>
+

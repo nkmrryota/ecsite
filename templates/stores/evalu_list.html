@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+     <link rel="stylesheet" href="{% static 'css/evalu_list.css' %}">
+{% endblock %}
+{% block content %}
+
+
+
+
+<div class=allcontainer>
+<span class='one_round'>{{ one_round }}</span>
+<span class='twe_round'>{{ twe_round }}</span>
+<span class='three_round'>{{ three_round }}</span>
+<span class='fore_round'>{{ fore_round }}</span>
+<span class='five_round'>{{ five_round }}</span>
+
+ <table class="charts-css bar show-heading show-labels show-data-axes data-spacing-15 hide-data" id="my-chart">
+  <caption> カスタマーレビュー </caption>
+  <thead>
+    <tr>
+      <th scope="col"> Year </th>
+      <th scope="col"> Value </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class='Tr'>
+      <th> 星５つ </th>
+      <td style="--size:{{ five }};"></td>
+    </tr class='Tr'>
+    <tr >
+      <th> 星４つ </th>
+      <td style="--size:{{ fore }}"></td>
+    </tr>
+    <tr class='Tr'>
+      <th> 星３つ </th>
+      <td style="--size:{{ three }}"></td>
+    </tr>
+    <tr class='Tr'>
+      <th> 星２つ </th>
+      <td style="--size:{{ twe }}"></td>
+    </tr>
+    <tr class='Tr'>
+      <th> 星１つ </th>
+      <td style="--size:{{ one }}"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="border"></div>
+
+<div class="list_all">
+{% for eval in object_list %}
+  {% if forloop.first %}
+      {% if check == 1%}
+        <br>
+        <spn class='list_but'><a class="btn btn-primary" href="{% url 'stores:evalu' pk=eval.product.id %}">口コミを書く</a></spn>
+      {% else %}
+        <br>
+        <spn class='list_but'>レビューを書くには購入が必要です</spn>
+      {% endif %} 
+  {% endif %} 
+ <div>{{ user.username }}</div>
+        <div>
+        {% if eval.evalucount == 1 %}
+          <div class="rate"><span class="rate1"></span></div>
+        {% elif eval.evalucount == 2 %}
+          <div class="rate"><span class="rate2"></span></div>
+        {% elif eval.evalucount == 3 %}
+          <div class="rate"><span class="rate3"></span></div>
+        {% elif eval.evalucount == 4 %}
+          <div class="rate"><span class="rate4"></span></div>
+        {% elif eval.evalucount == 5 %}
+          <div class="rate"><span class="rate5"></span></div>
+        
+        {% endif %} 
+        
+            <span>{{ eval.subject }}</span>
+            <div>{{ eval.date }}にレビュー済み</div>
+            <div>{{ eval.comment }}</div>
+            <br>
+        </div>
+
+
+{% endfor %}
+ <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <!-- 現在よりも前のページが存在する場合 -->
+                <a href="?page=1">&laquo; 先頭</a>
+                <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
+            {% endif %}
+
+            <span class="current">
+                <!-- 現在のページ番号と、全ページ数を表示 -->
+                {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <!-- 現在よりも後のページが存在する場合 -->
+                <a href="?page={{ page_obj.next_page_number }}">次へ</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">最後 &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    </div>
+
+</div>
+<br>
+<br> 
+
+{% endblock %}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+   <head>
+      <meta charset="utf-8">
+      {% load static %}
+      {% block style %}{% endblock %}
+      <link rel="stylesheet" href="{% static 'css/base.css' %}">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"> 
+      <script src="{% static 'js/product_list.js' %}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="{% static 'css/userconfig_list.css' %}">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" ></script>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a id='navid' class="navbar-brand" href="{% url 'accounts:home' %}">ホーム</a>
+        <a class="navbar-brand" href="{% url 'accounts:user_logout' %}">ログアウト</a>
+        <a class="navbar-brand" href="{% url 'stores:product_list' %}">商品一覧</a>
+        <a class="navbar-brand" href="{% url 'stores:cart_items' %}">カートへ</a>
+        <a class="navbar-brand" href="{% url 'accounts:user_check' %}">お客様情報</a>
+        {% for u in user %}
+            <span>ログイン状態：{{ u.username }} としてログイン中<span>
+        {% endfor %}
+        
+      </nav>
+<div class='container_all'>
+    <div class='container_userinfo'>
+        <div class='title'><h4>お客様設定情報</h4></div>
+        <br>
+        {% if user %}
+            {% for u in user %}
+                <div class='user_name'>
+                    <h5>お名前：{{ u.username }}</h5>
+                </div>
+                <div class='user_address'>
+                    <h5>メールアドレス：{{ u.email }}</h5>
+                </div>
+                <button class='user_change_button' onclick="location.href='{% url 'accounts:user_update' pk=u.id%}'">お名前を変更する</button>
+                <button class='' onclick="location.href='{% url 'accounts:password_change'%}'">パスワード変更</button>
+            {% endfor %}
+        <hr>
+        </div>
+        <div class='container_address'>
+            <div class='address_all'>
+                <div>登録住所</div>
+                {% for address in addresses %}
+                    <div>郵便番号：　{{ address.zip_code }}</div>
+                    <div>都道府県：　{{ address.prefecture }}</div>
+                    <div>住所：　{{ address.address }}</div>
+                    <br>
+                {% endfor %}
+        {% else %}
+            <div>
+                    <h5>住所が設定されていません</h5>
+            </div>
+        
+        {% endif %}
+            <button onclick="location.href='{% url 'accounts:user_address_list'%}'">送り先住所を変更する</button>
+        </div>
+    </div>
+</div>
+
+
+   </body>
+</html>

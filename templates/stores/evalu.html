@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+ <link rel="stylesheet" href="{% static 'css/evalu.css' %}">
+{% endblock %}
+{% block content %}
+{% comment %} <div class="rate-form">
+  <input id="star5" type="radio" name="rate" value="5">
+  <label for="star5">★</label>
+  <input id="star4" type="radio" name="rate" value="4">
+  <label for="star4">★</label>
+  <input id="star3" type="radio" name="rate" value="3">
+  <label for="star3">★</label>
+  <input id="star2" type="radio" name="rate" value="2">
+  <label for="star2">★</label>
+  <input id="star1" type="radio" name="rate" value="1">
+  <label for="star1">★</label>
+</div> {% endcomment %}
+<div class='evalform_all'>
+
+  {% for product in products %}
+    {% for picture in product.related_picture.all %} 
+      {% if picture.order == 1 %}
+        <div class='product'>
+          <div><span><img class='product_img' width="200px" height="200px" src={{ picture.picture.url }}></span><span class='product_name'>{{ product.name }}</span><div>
+          <div class='border_one'></div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+
+
+
+  
+  <div class='form_all'>
+    <form action="{% url 'stores:evalu' %}" method="POST">
+      {% csrf_token %}
+      <div>総合評価：</div>
+      <div class="rate-form">
+      <input id="star5" type="radio" name="rate" value="5">
+      <label for="star5">★</label>
+      <input id="star4" type="radio" name="rate" value="4">
+      <label for="star4">★</label>
+      <input id="star3" type="radio" name="rate" value="3">
+      <label for="star3">★</label>
+      <input id="star2" type="radio" name="rate" value="2">
+      <label for="star2">★</label>
+      <input id="star1" type="radio" name="rate" value="1">
+      <label for="star1">★</label>
+    </div>
+      <div class='border_twe'></div>
+      <div class='form_tatle'>レビュータイトル：</div>
+      <div class='form_comment'>レビュー内容：</div>
+      <div class='sub_com_form'>{{ form.as_p }}</div>
+      <input type="hidden" name="hidden_data" value={{ id }}>
+      <input class='sub' type="submit" id='add_evalucount' value="投稿" />
+      <div class='border_three'></div>
+    </form>
+      <a href="{{request.META.HTTP_REFERER}}">注文リストへ戻る</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+.all {
+    position: relative;
+    width: 80vw;
+    left: 10%;
+}
+
+label[for="id_password"] {
+    font-size: 0px;
+} 
+
+#id_password{
+    margin-top: 2%;
+
+}
+
+.title {
+    margin-top: 2%;
+}
+
+.sub {
+    margin-left: 8.3%;
+
+}

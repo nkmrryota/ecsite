@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+ <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+<div class='container'>
+{% if user.is_authenticated %}
+    <h2>{{ user.username }}さん、こんにちは</h2>
+{% else %}
+     <h2>ゲストさん、こんにちは</h2>
+{% endif %}
+<a id="serch" class="navbar-brand" href="{% url 'stores:product_list' %}">▶︎▷商品を検索する</a>
+</div>
+{% endblock %}

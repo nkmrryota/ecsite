@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-3" style="max-width:700px;">
+    <div class="text-center my-3">
+        <h3>新しい送り先住所を追加する</h3>
+    </div>
+    
+    <form method="POST"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary form-control" type="submit">登録</button>
+        <a href="{{request.META.HTTP_REFERER}}">お客様情報へ戻る</a>
+    </form>
+</div>
+{% endblock %}
+

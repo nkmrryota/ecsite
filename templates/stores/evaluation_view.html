@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <hr>
+  <form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="口コミを投稿する">
+  </form>
+  <hr>
+
+  <form action="" method="post">
+  <table>{{form1.as_table}}</table>
+</form>
+  {% comment %} <h3>過去に利用したアドレス</h3>
+  {% for address in addresses %}
+    <p><a href={% url 'stores:input_address' pk=address.id %}>{{ address }}</a></p>
+  {% endfor %}  {% endcomment %}
+
+{% endblock %}

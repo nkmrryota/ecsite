@@ -1,0 +1,14 @@
+.container {
+    position: relative;
+
+}
+
+h2 {
+    position: absolute;
+    top: 1rem;
+}
+
+#serch {
+    position: absolute;
+    top: 4rem;
+}

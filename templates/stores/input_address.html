@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+  {% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/input_address.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class='containrer_all'>
+    <h2>住所を設定してください</h2>
+    <hr>
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="住所を設定する">
+    </form>
+    <hr>
+    <p>{{ user.username }}さんの登録住所一覧</p>
+    <br>
+  {% for address in user_addresses %}
+    <p>郵便番号：{{ address.zip_code }}</p>
+    <p>都道府県：{{ address.prefecture }}</p>
+    <p>住所：{{ address.address }}</p>
+    <p><a href={% url 'stores:input_address' pk=address.id %} class="btn btn-primary" role="button" >選択する</a></p>
+  {% endfor %} 
+  <hr>
+  <button onclick="location.href='{% url 'accounts:user_address_list'%}'">送り先住所を変更する</button>
+</div>
+{% endblock %}

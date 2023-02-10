@@ -1,0 +1,211 @@
+.rate{
+    position: relative;
+    display: inline-block;
+    }
+    /* グレーの★を「rate」classで最高値を敷く */
+    .rate:before{
+    content: "★★★★★";
+    color: #ccc;
+    }
+    
+    /* absoluteで親を基準に設定。色とサイズは設定するがhiddenで隠しておく */
+    .rate0-5:after,
+    .rate1:before,
+    .rate1:after,
+    .rate1-5:before,
+    .rate1-5:after,
+    .rate2:before,
+    .rate2:after,
+    .rate2-5:before,
+    .rate2-5:after,
+    .rate3:before,
+    .rate3:after,
+    .rate3-5:before,
+    .rate3-5:after,
+    .rate4:before,
+    .rate4:after,
+    .rate4-5:before,
+    .rate4-5:after,
+    .rate5:after{
+    position: absolute;
+    top:0;
+    left:0;
+    color: #FFA500;
+    overflow: hidden;
+    height: 24px;
+    }
+    
+    .rate .rate0-5:after,
+    .rate .rate1-5:after,
+    .rate .rate2-5:after,
+    .rate .rate3-5:after,
+    .rate .rate4-5:after{
+        width: 8px;
+        content: "★";
+    }
+    
+    .rate .rate1:after,
+    .rate .rate1-5:before{
+        content: "★";
+    }
+    .rate .rate1-5:after{
+        left: 1em;
+    }
+    .rate .rate2:after,
+    .rate .rate2-5:before{
+        content: "★★";
+    }
+    .rate .rate2-5:after{
+        left: 2em;
+    }
+    .rate .rate3:after,
+    .rate .rate3-5:before{
+        content: "★★★";
+    }
+    .rate .rate3-5:after{
+        left: 3em;
+    }
+    .rate .rate4:after,
+    .rate .rate4-5:before{
+        content: "★★★★";
+    }
+    .rate .rate4-5:after{
+        left: 4em;
+    }
+    .rate .rate5:after{
+        content: "★★★★★";
+    }
+    
+    
+
+.rate-form {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+      }
+.rate-form input[type=radio] {
+        display: none;
+      }
+.rate-form label {
+        position: relative;
+        padding: 0 5px;
+        color: #ccc;
+        cursor: pointer;
+        font-size: 35px;
+      }
+.rate-form label:hover {
+        color: #ffcc00;
+      }
+.rate-form label:hover ~ label {
+        color: #ffcc00;
+      }
+.rate-form input[type=radio]:checked ~ label {
+        color: #ffcc00;
+      }
+
+
+
+.evalform_all {
+    position: relative;
+    width: 50vw;
+    left: 25%;
+}
+
+.border_one {
+    position: absolute;
+    width: 100%;
+    height: 0.1rem;
+    top: 10rem;
+    background-color: darkgrey;
+}
+
+.product {
+    position: absolute;
+    width: 100%;
+    top: 3rem;
+}
+
+.product_img {
+    width: 8rem;
+    height: 8rem;
+}
+
+.product_name {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 2rem;
+    left: 10rem;
+}
+
+.form_all {
+    position: absolute;
+    top: 12rem;
+    width: 100%;
+}
+
+.border_twe {
+    position: absolute;
+    width: 100%;
+    height: 0.1rem;
+    top: 6rem;
+    background-color: darkgrey;
+}
+
+.sub_com_form {
+    position: absolute;
+    width: 100%;
+    top: 9rem;
+}
+
+.border_three {
+    position: absolute;
+    width: 100%;
+    height: 0.1rem;
+    top: 395%;
+    background-color: darkgrey;
+}
+
+.form_all a {
+    position: absolute;
+    top: 410%;
+    left: 68%;
+}
+
+.sub {
+    position: absolute;
+    top: 405%;
+    left: 92%;
+    border-radius: 0.5rem;
+}
+
+label[for="id_subject"] {
+    font-size: 0px;
+} 
+
+label[for="id_comment"] {
+    font-size: 0px;
+} 
+
+#id_subject {
+    position: absolute;
+    width: 99%;
+}
+
+
+#id_comment {
+    position: absolute;
+    width: 99%;
+    top: 95%;
+    height: 80%;
+}
+
+
+.form_tatle {
+    position: absolute;
+    top: 7rem;
+}
+
+.form_comment {
+    position: absolute;
+    top: 12rem;
+}

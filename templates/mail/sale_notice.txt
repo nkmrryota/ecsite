@@ -1,0 +1,6 @@
+{{  }}
+
+購入商品名：
+{% for name in product_name %}
+{{ name }}
+{% endfor %}

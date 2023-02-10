@@ -1,0 +1,10 @@
+.container_all {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    height: 5em;
+}
+
+.title {
+    margin-top: 5%;
+}

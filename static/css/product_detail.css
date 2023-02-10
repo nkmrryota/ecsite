@@ -1,0 +1,1301 @@
+@media screen and (min-width:1280px) {
+    /*pc用のcssを記述*/
+    /* relativeでrateを親に擬似要素で動かす */
+.rate{
+    position: relative;
+    display: inline-block;
+    }
+    /* グレーの★を「rate」classで最高値を敷く */
+    .rate:before{
+    content: "★★★★★";
+    color: #ccc;
+    }
+    
+    /* absoluteで親を基準に設定。色とサイズは設定するがhiddenで隠しておく */
+    .rate0-5:after,
+    .rate1:before,
+    .rate1:after,
+    .rate1-5:before,
+    .rate1-5:after,
+    .rate2:before,
+    .rate2:after,
+    .rate2-5:before,
+    .rate2-5:after,
+    .rate3:before,
+    .rate3:after,
+    .rate3-5:before,
+    .rate3-5:after,
+    .rate4:before,
+    .rate4:after,
+    .rate4-5:before,
+    .rate4-5:after,
+    .rate5:after{
+    position: absolute;
+    top:0;
+    left:0;
+    color: #FFA500;
+    overflow: hidden;
+    height: 24px;
+    }
+    
+    .rate .rate0-5:after,
+    .rate .rate1-5:after,
+    .rate .rate2-5:after,
+    .rate .rate3-5:after,
+    .rate .rate4-5:after{
+        /* width: 8px; */
+        width: 5%;
+        content: "★";
+    }
+    
+    .rate .rate1:after,
+    .rate .rate1-5:before{
+        content: "★";
+    }
+    .rate .rate1-5:after{
+        left: 1em;
+    }
+    .rate .rate2:after,
+    .rate .rate2-5:before{
+        content: "★★";
+    }
+    .rate .rate2-5:after{
+        left: 2em;
+    }
+    .rate .rate3:after,
+    .rate .rate3-5:before{
+        content: "★★★";
+    }
+    .rate .rate3-5:after{
+        left: 3em;
+    }
+    .rate .rate4:after,
+    .rate .rate4-5:before{
+        content: "★★★★";
+    }
+    .rate .rate4-5:after{
+        left: 4em;
+    }
+    .rate .rate5:after{
+        content: "★★★★★";
+    }
+    
+    
+
+.rate-form {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+      }
+.rate-form input[type=radio] {
+        display: none;
+      }
+.rate-form label {
+        position: relative;
+        padding: 0 5px;
+        color: #ccc;
+        cursor: pointer;
+        font-size: 35px;
+      }
+.rate-form label:hover {
+        color: #ffcc00;
+      }
+.rate-form label:hover ~ label {
+        color: #ffcc00;
+      }
+.rate-form input[type=radio]:checked ~ label {
+        color: #ffcc00;
+      }
+
+
+
+
+.container_all {
+    position: relative;
+    width: 80vw;
+    margin: auto;
+    height: 40vh;
+}
+
+.evalu_border {
+    position: absolute;
+    height: 0.1em;
+    width: 84%;
+    background-color: darkgray;
+    top: 138%;
+    left: 8%;
+}
+
+
+.product_img {
+    width: 80%;
+    height: 75%;
+    margin: auto;
+    left: 17%;
+    position: absolute;
+    top: 25%;
+}
+.product_img img {
+    width: 35%;
+    height: auto;
+}
+
+.product_name {
+    position: absolute;
+    width: 30%;
+    height: 10%;
+    margin: auto;
+    left: 54%;
+    top: 10%;
+}
+
+.product_name h3 {
+    font-size: 1.8vw;
+}
+
+
+.container_rate {
+    position: absolute;
+    width: 15em;
+    height: 10%;
+    left: 54%;
+    top: 22%;
+}
+
+.rate a {
+    font-size: 1vw;
+}
+
+.brand_container {
+    position: absolute;
+    width: 15em;
+    height: 8%;
+    top: 35%;
+    left: 54%;
+}
+.brand_container h6 {
+    font-size: 1.1vw;
+}
+
+
+.price_container {
+    position: absolute;
+    width: 15em;
+    height: 8%;
+    top: 49%;
+    left: 54%;
+
+}
+.price_container h6 {
+    font-size: 1.1vw;
+}
+
+.stock_container {
+    position: absolute;
+    width: 15em;
+    height: 8%;
+    top: 57%;
+    left: 54.2%;
+}
+.stock_container h6 {
+    font-size: 1.1vw;
+}
+
+
+#my-chart {
+    left: 1%;
+    top: 1rem;
+}
+
+#my-chart.bar {
+    height: 230px;
+    max-width: 300px;
+    margin: 0 auto;
+    float: left;
+}
+.cartadd_all {
+    position: absolute;
+    width: 15em;
+    height: 8%;
+    top: 65%;
+    left: 54.2%;
+}
+
+.cartadd_all input {
+    font-size: 1.2vw;
+    height: 110%;
+    position: absolute;
+}
+
+.cartadd_all a{
+    font-size: 1.2vw;
+    height: 128%;
+    position: absolute;
+    left: 31%;
+    top: -5%;
+}
+
+.cartadd_all button {
+    font-size: 1vw;
+    height: 150%;
+    position: absolute;
+    left: 25%;
+    top: -5%;
+}
+
+.describe_title {
+    position: absolute;
+    width: 15em;
+    height: 8%;
+    top: 90%;
+    left: 54%;
+}
+
+.describe_title h6 {
+    font-size: 1.2vw;
+}
+
+.describe {
+    position: absolute;
+    width: 15em;
+    height: 8%;
+    top: 98%;
+    left: 54%;
+}
+
+.describe h6 {
+    font-size: 1.2vw;
+    width: 120%;
+}
+
+.evalchart_all {
+    position: absolute;
+    width: 30%;
+    height: 90%;
+    left: 18%;
+    top: 147%;
+}
+
+.evalchart_all h6 {
+    font-size: 90%;
+}
+
+
+.one_round {
+    position: absolute;
+    left: 19.5em;
+    top: 74%;
+}
+
+.twe_round {
+    position: absolute;
+    left: 19.5em;
+    top: 60%;
+}
+
+.three_round {
+    position: absolute;
+    left: 19.5em;
+    top: 47%;
+}
+
+.fore_round {
+    position: absolute;
+    left: 19.5em;
+    top: 34%;
+}
+
+.five_round {
+    position: absolute;
+    left: 19.5em;
+    top: 20%;
+}
+
+.evalu_list {
+    position: relative;
+    height: 40vh;
+    top: 158%;
+    left: 55%;
+}
+
+
+
+
+/* #add_product {
+    position: absolute;
+    left: 4rem;
+    top: -0.2rem;
+
+}
+
+
+
+.discribe {
+    position: absolute;
+    left: 60%;
+    top: 25%;
+
+    width: 30%;
+}
+
+.discribe_parts {
+
+}
+
+.price {
+    font-size: 2rem;
+}
+
+.decribe_price {
+    margin-bottom: 0rem;
+}
+
+
+
+.cartadd_all {
+    position: absolute;
+    top: 105%;
+}
+
+
+.evalu_border {
+    position: absolute;
+    width: 80VW;
+    left: -200%;
+    height: 0.1rem;
+    background-color: darkgrey;
+    top: 110%;
+}
+
+
+.evalu_list {
+    position: absolute;
+    top: 147%;
+}
+
+.eval_title {
+    top: -4rem;
+    left: 1rem;
+    position: absolute;
+}
+
+.evalchart_all {
+    position: absolute;
+    top: 150%;
+    left: -160%;
+}
+
+#my-chart {
+   
+}
+
+#my-chart.bar {
+    height: 17rem;
+    margin: 0 auto;
+    float: left;
+    width: 22rem;
+}
+
+.one_round  {
+    top: 14.5rem;
+    position: absolute;
+    left: 23rem;
+}
+
+.twe_round  {
+    top: 11.1rem;
+    position: absolute;
+    left: 23rem;
+}
+
+.three_round  {
+    top: 7.7rem;
+    position: absolute;
+    left: 23rem;
+}
+
+.fore_round  {
+    top: 4.3rem;
+    position: absolute;
+    left: 23rem;
+}
+
+.five_round  {
+    top: 1rem;
+    position: absolute;
+    left: 23rem;
+}
+
+.btn-danger {
+    margin-bottom: 0rem;
+} */
+    }
+
+    @media screen and (min-width:600px) and (max-width:1279px) {
+        /*pc用のcssを記述*/
+        /* relativeでrateを親に擬似要素で動かす */
+    .rate{
+        position: relative;
+        display: inline-block;
+        }
+        /* グレーの★を「rate」classで最高値を敷く */
+        .rate:before{
+        content: "★★★★★";
+        color: #ccc;
+        }
+        
+        /* absoluteで親を基準に設定。色とサイズは設定するがhiddenで隠しておく */
+        .rate0-5:after,
+        .rate1:before,
+        .rate1:after,
+        .rate1-5:before,
+        .rate1-5:after,
+        .rate2:before,
+        .rate2:after,
+        .rate2-5:before,
+        .rate2-5:after,
+        .rate3:before,
+        .rate3:after,
+        .rate3-5:before,
+        .rate3-5:after,
+        .rate4:before,
+        .rate4:after,
+        .rate4-5:before,
+        .rate4-5:after,
+        .rate5:after{
+        position: absolute;
+        top:0;
+        left:0;
+        color: #FFA500;
+        overflow: hidden;
+        height: 24px;
+        }
+        
+        .rate .rate0-5:after,
+        .rate .rate1-5:after,
+        .rate .rate2-5:after,
+        .rate .rate3-5:after,
+        .rate .rate4-5:after{
+            /* width: 8px; */
+            width: 5%;
+            content: "★";
+        }
+        
+        .rate .rate1:after,
+        .rate .rate1-5:before{
+            content: "★";
+        }
+        .rate .rate1-5:after{
+            left: 1em;
+        }
+        .rate .rate2:after,
+        .rate .rate2-5:before{
+            content: "★★";
+        }
+        .rate .rate2-5:after{
+            left: 2em;
+        }
+        .rate .rate3:after,
+        .rate .rate3-5:before{
+            content: "★★★";
+        }
+        .rate .rate3-5:after{
+            left: 3em;
+        }
+        .rate .rate4:after,
+        .rate .rate4-5:before{
+            content: "★★★★";
+        }
+        .rate .rate4-5:after{
+            left: 4em;
+        }
+        .rate .rate5:after{
+            content: "★★★★★";
+        }
+        
+        
+    
+    .rate-form {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+          }
+    .rate-form input[type=radio] {
+            display: none;
+          }
+    .rate-form label {
+            position: relative;
+            padding: 0 5px;
+            color: #ccc;
+            cursor: pointer;
+            font-size: 35px;
+          }
+    .rate-form label:hover {
+            color: #ffcc00;
+          }
+    .rate-form label:hover ~ label {
+            color: #ffcc00;
+          }
+    .rate-form input[type=radio]:checked ~ label {
+            color: #ffcc00;
+          }
+    
+    
+    
+    
+    .container_all {
+        position: relative;
+        width: 80vw;
+        margin: auto;
+        height: 40vh;
+    }
+    
+    .evalu_border {
+        position: absolute;
+        height: 0.1em;
+        width: 84%;
+        background-color: darkgray;
+        top: 138%;
+        left: 8%;
+    }
+    
+    
+    .product_img {
+        width: 80%;
+        height: 75%;
+        margin: auto;
+        left: 17%;
+        position: absolute;
+        top: 25%;
+    }
+    .product_img img {
+        width: 35%;
+        height: auto;
+    }
+    
+    .product_name {
+        position: absolute;
+        width: 30%;
+        height: 10%;
+        margin: auto;
+        left: 54%;
+        top: 10%;
+    }
+    
+    .product_name h3 {
+        font-size: 1.8vw;
+    }
+    
+    
+    .container_rate {
+        position: absolute;
+        width: 15em;
+        height: 10%;
+        left: 54%;
+        top: 22%;
+    }
+    
+    .rate a {
+        font-size: 1vw;
+    }
+    
+    .brand_container {
+        position: absolute;
+        width: 15em;
+        height: 8%;
+        top: 35%;
+        left: 54%;
+    }
+    .brand_container h6 {
+        font-size: 1.1vw;
+    }
+    
+    
+    .price_container {
+        position: absolute;
+        width: 15em;
+        height: 8%;
+        top: 49%;
+        left: 54%;
+    
+    }
+    .price_container h6 {
+        font-size: 1.1vw;
+    }
+    
+    .stock_container {
+        position: absolute;
+        width: 15em;
+        height: 8%;
+        top: 57%;
+        left: 54.2%;
+    }
+    .stock_container h6 {
+        font-size: 1.1vw;
+    }
+    
+    
+    #my-chart {
+        left: 1%;
+        top: 1rem;
+    }
+    
+    #my-chart.bar {
+        height: 230px;
+        max-width: 300px;
+        margin: 0 auto;
+        float: left;
+    }
+    .cartadd_all {
+        position: absolute;
+        width: 15em;
+        height: 8%;
+        top: 65%;
+        left: 54.2%;
+    }
+    
+    .cartadd_all input {
+        font-size: 1.2vw;
+        height: 110%;
+        position: absolute;
+    }
+    
+    .cartadd_all a{
+        font-size: 1.2vw;
+        height: 128%;
+        position: absolute;
+        left: 31%;
+        top: -5%;
+    }
+    
+    .cartadd_all button {
+        font-size: 1vw;
+        height: 150%;
+        position: absolute;
+        left: 25%;
+        top: -5%;
+    }
+    
+    .describe_title {
+        position: absolute;
+        width: 15em;
+        height: 8%;
+        top: 90%;
+        left: 54%;
+    }
+    
+    .describe_title h6 {
+        font-size: 1.2vw;
+    }
+    
+    .describe {
+        position: absolute;
+        width: 15em;
+        height: 8%;
+        top: 98%;
+        left: 54%;
+    }
+    
+    .describe h6 {
+        font-size: 1.2vw;
+        width: 120%;
+    }
+    
+    .evalchart_all {
+        position: absolute;
+        width: 30%;
+        height: 90%;
+        left: 18%;
+        top: 147%;
+    }
+    
+    .evalchart_all h6 {
+        font-size: 90%;
+    }
+    
+    
+    .one_round {
+        position: absolute;
+        left: 19.5em;
+        top: 74%;
+    }
+    
+    .twe_round {
+        position: absolute;
+        left: 19.5em;
+        top: 60%;
+    }
+    
+    .three_round {
+        position: absolute;
+        left: 19.5em;
+        top: 47%;
+    }
+    
+    .fore_round {
+        position: absolute;
+        left: 19.5em;
+        top: 34%;
+    }
+    
+    .five_round {
+        position: absolute;
+        left: 19.5em;
+        top: 20%;
+    }
+    
+    .evalu_list {
+        position: relative;
+        height: 40vh;
+        top: 158%;
+        left: 55%;
+    }
+
+    h6 {
+        font-size: 1em;
+    }
+    
+    
+    
+    
+    /* #add_product {
+        position: absolute;
+        left: 4rem;
+        top: -0.2rem;
+    
+    }
+    
+    
+    
+    .discribe {
+        position: absolute;
+        left: 60%;
+        top: 25%;
+    
+        width: 30%;
+    }
+    
+    .discribe_parts {
+    
+    }
+    
+    .price {
+        font-size: 2rem;
+    }
+    
+    .decribe_price {
+        margin-bottom: 0rem;
+    }
+    
+    
+    
+    .cartadd_all {
+        position: absolute;
+        top: 105%;
+    }
+    
+    
+    .evalu_border {
+        position: absolute;
+        width: 80VW;
+        left: -200%;
+        height: 0.1rem;
+        background-color: darkgrey;
+        top: 110%;
+    }
+    
+    
+    .evalu_list {
+        position: absolute;
+        top: 147%;
+    }
+    
+    .eval_title {
+        top: -4rem;
+        left: 1rem;
+        position: absolute;
+    }
+    
+    .evalchart_all {
+        position: absolute;
+        top: 150%;
+        left: -160%;
+    }
+    
+    #my-chart {
+       
+    }
+    
+    #my-chart.bar {
+        height: 17rem;
+        margin: 0 auto;
+        float: left;
+        width: 22rem;
+    }
+    
+    .one_round  {
+        top: 14.5rem;
+        position: absolute;
+        left: 23rem;
+    }
+    
+    .twe_round  {
+        top: 11.1rem;
+        position: absolute;
+        left: 23rem;
+    }
+    
+    .three_round  {
+        top: 7.7rem;
+        position: absolute;
+        left: 23rem;
+    }
+    
+    .fore_round  {
+        top: 4.3rem;
+        position: absolute;
+        left: 23rem;
+    }
+    
+    .five_round  {
+        top: 1rem;
+        position: absolute;
+        left: 23rem;
+    }
+    
+    .btn-danger {
+        margin-bottom: 0rem;
+    } */
+        }
+        @media screen and (max-width:600px)  {
+            /*pc用のcssを記述*/
+            /* relativeでrateを親に擬似要素で動かす */
+        .rate{
+            position: relative;
+            display: inline-block;
+            }
+            /* グレーの★を「rate」classで最高値を敷く */
+            .rate:before{
+            content: "★★★★★";
+            color: #ccc;
+            }
+            
+            /* absoluteで親を基準に設定。色とサイズは設定するがhiddenで隠しておく */
+            .rate0-5:after,
+            .rate1:before,
+            .rate1:after,
+            .rate1-5:before,
+            .rate1-5:after,
+            .rate2:before,
+            .rate2:after,
+            .rate2-5:before,
+            .rate2-5:after,
+            .rate3:before,
+            .rate3:after,
+            .rate3-5:before,
+            .rate3-5:after,
+            .rate4:before,
+            .rate4:after,
+            .rate4-5:before,
+            .rate4-5:after,
+            .rate5:after{
+            position: absolute;
+            top:0;
+            left:0;
+            color: #FFA500;
+            overflow: hidden;
+            height: 24px;
+            }
+            
+            .rate .rate0-5:after,
+            .rate .rate1-5:after,
+            .rate .rate2-5:after,
+            .rate .rate3-5:after,
+            .rate .rate4-5:after{
+                /* width: 8px; */
+                width: 5%;
+                content: "★";
+            }
+            
+            .rate .rate1:after,
+            .rate .rate1-5:before{
+                content: "★";
+            }
+            .rate .rate1-5:after{
+                left: 1em;
+            }
+            .rate .rate2:after,
+            .rate .rate2-5:before{
+                content: "★★";
+            }
+            .rate .rate2-5:after{
+                left: 2em;
+            }
+            .rate .rate3:after,
+            .rate .rate3-5:before{
+                content: "★★★";
+            }
+            .rate .rate3-5:after{
+                left: 3em;
+            }
+            .rate .rate4:after,
+            .rate .rate4-5:before{
+                content: "★★★★";
+            }
+            .rate .rate4-5:after{
+                left: 4em;
+            }
+            .rate .rate5:after{
+                content: "★★★★★";
+            }
+            
+            
+        
+        .rate-form {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: flex-end;
+              }
+        .rate-form input[type=radio] {
+                display: none;
+              }
+        .rate-form label {
+                position: relative;
+                padding: 0 5px;
+                color: #ccc;
+                cursor: pointer;
+                font-size: 35px;
+              }
+        .rate-form label:hover {
+                color: #ffcc00;
+              }
+        .rate-form label:hover ~ label {
+                color: #ffcc00;
+              }
+        .rate-form input[type=radio]:checked ~ label {
+                color: #ffcc00;
+              }
+        
+        
+        
+        
+        .container_all {
+            position: relative;
+            width: 80vw;
+            margin: auto;
+            height: 40vh;
+        }
+        
+        .evalu_border {
+            position: absolute;
+            height: 0.1em;
+            width: 84%;
+            background-color: darkgray;
+            top: 138%;
+            left: 8%;
+        }
+        
+        
+        .product_img {
+            width: 80%;
+            height: 75%;
+            margin: auto;
+            left: 17%;
+            position: absolute;
+            top: 25%;
+        }
+        .product_img img {
+            width: 35%;
+            height: auto;
+        }
+        
+        .product_name {
+            position: absolute;
+            width: 30%;
+            height: 10%;
+            margin: auto;
+            left: 54%;
+            top: 10%;
+        }
+        
+        .product_name h3 {
+            font-size: 1.8vw;
+        }
+        
+        
+        .container_rate {
+            position: absolute;
+            width: 15em;
+            height: 10%;
+            left: 54%;
+            top: 22%;
+        }
+        
+        .rate a {
+            font-size: 1vw;
+        }
+        
+        .brand_container {
+            position: absolute;
+            width: 15em;
+            height: 8%;
+            top: 35%;
+            left: 54%;
+        }
+        .brand_container h6 {
+            font-size: 1.1vw;
+        }
+        
+        
+        .price_container {
+            position: absolute;
+            width: 15em;
+            height: 8%;
+            top: 49%;
+            left: 54%;
+        
+        }
+        .price_container h6 {
+            font-size: 1.1vw;
+        }
+        
+        .stock_container {
+            position: absolute;
+            width: 15em;
+            height: 8%;
+            top: 57%;
+            left: 54.2%;
+        }
+        .stock_container h6 {
+            font-size: 1.1vw;
+        }
+        
+        
+        #my-chart {
+            left: 1%;
+            top: 1rem;
+        }
+        
+        #my-chart.bar {
+            height: 230px;
+            max-width: 300px;
+            margin: 0 auto;
+            float: left;
+        }
+        .cartadd_all {
+            position: absolute;
+            width: 15em;
+            height: 8%;
+            top: 65%;
+            left: 54.2%;
+        }
+        
+        .cartadd_all input {
+            font-size: 1.2vw;
+            height: 110%;
+            position: absolute;
+        }
+        
+        .cartadd_all a{
+            font-size: 1.2vw;
+            height: 128%;
+            position: absolute;
+            left: 31%;
+            top: -5%;
+        }
+        
+        .cartadd_all button {
+            font-size: 1vw;
+            height: 150%;
+            position: absolute;
+            left: 25%;
+            top: -5%;
+        }
+        
+        .describe_title {
+            position: absolute;
+            width: 15em;
+            height: 8%;
+            top: 90%;
+            left: 54%;
+        }
+        
+        .describe_title h6 {
+            font-size: 1.2vw;
+        }
+        
+        .describe {
+            position: absolute;
+            width: 15em;
+            height: 8%;
+            top: 98%;
+            left: 54%;
+        }
+        
+        .describe h6 {
+            font-size: 1.2vw;
+            width: 120%;
+        }
+        
+        .evalchart_all {
+            position: absolute;
+            width: 30%;
+            height: 90%;
+            left: 18%;
+            top: 147%;
+        }
+        
+        .evalchart_all h6 {
+            font-size: 90%;
+        }
+        
+        
+        .one_round {
+            position: absolute;
+            left: 19.5em;
+            top: 74%;
+        }
+        
+        .twe_round {
+            position: absolute;
+            left: 19.5em;
+            top: 60%;
+        }
+        
+        .three_round {
+            position: absolute;
+            left: 19.5em;
+            top: 47%;
+        }
+        
+        .fore_round {
+            position: absolute;
+            left: 19.5em;
+            top: 34%;
+        }
+        
+        .five_round {
+            position: absolute;
+            left: 19.5em;
+            top: 20%;
+        }
+        
+        .evalu_list {
+            position: relative;
+            height: 40vh;
+            top: 158%;
+            left: 55%;
+        }
+        
+        
+        
+        
+        /* #add_product {
+            position: absolute;
+            left: 4rem;
+            top: -0.2rem;
+        
+        }
+        
+        
+        
+        .discribe {
+            position: absolute;
+            left: 60%;
+            top: 25%;
+        
+            width: 30%;
+        }
+        
+        .discribe_parts {
+        
+        }
+        
+        .price {
+            font-size: 2rem;
+        }
+        
+        .decribe_price {
+            margin-bottom: 0rem;
+        }
+        
+        
+        
+        .cartadd_all {
+            position: absolute;
+            top: 105%;
+        }
+        
+        
+        .evalu_border {
+            position: absolute;
+            width: 80VW;
+            left: -200%;
+            height: 0.1rem;
+            background-color: darkgrey;
+            top: 110%;
+        }
+        
+        
+        .evalu_list {
+            position: absolute;
+            top: 147%;
+        }
+        
+        .eval_title {
+            top: -4rem;
+            left: 1rem;
+            position: absolute;
+        }
+        
+        .evalchart_all {
+            position: absolute;
+            top: 150%;
+            left: -160%;
+        }
+        
+        #my-chart {
+           
+        }
+        
+        #my-chart.bar {
+            height: 17rem;
+            margin: 0 auto;
+            float: left;
+            width: 22rem;
+        }
+        
+        .one_round  {
+            top: 14.5rem;
+            position: absolute;
+            left: 23rem;
+        }
+        
+        .twe_round  {
+            top: 11.1rem;
+            position: absolute;
+            left: 23rem;
+        }
+        
+        .three_round  {
+            top: 7.7rem;
+            position: absolute;
+            left: 23rem;
+        }
+        
+        .fore_round  {
+            top: 4.3rem;
+            position: absolute;
+            left: 23rem;
+        }
+        
+        .five_round  {
+            top: 1rem;
+            position: absolute;
+            left: 23rem;
+        }
+        
+        .btn-danger {
+            margin-bottom: 0rem;
+        } */
+            }

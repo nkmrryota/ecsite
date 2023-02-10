@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3" style="max-width:700px;">
+
+    <p>{{ name }}さんの登録住所▼</p>
+    <br>
+    {% for address in addresses %}
+        <div>
+        <p>郵便番号：　{{ address.zip_code }}</p>
+        <p>都道府県：　{{ address.prefecture }}</p>
+        <p>住所：　{{ address.address }}</p>
+        <button onclick="location.href='{% url 'accounts:user_address_delete' pk=address.id%}'">削除する</button>
+        </div>
+        <br>
+    {% endfor %}
+    <a href="{% url 'accounts:user_info' %}" style="text-decoration:none;">送り先住所を追加する</a>
+</div>
+{% endblock %}

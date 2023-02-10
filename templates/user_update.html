@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="更新">
+    <a href="{{request.META.HTTP_REFERER}}">お客様情報へ戻る</a>
+</form>

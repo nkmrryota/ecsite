@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+ <link rel="stylesheet" href="{% static 'css/user_check.css' %}">
+{% endblock %}
+{% block content %}
+<div class='all'>
+   <div class='title'><h4>パスワードを入力してください</h4></div>
+   <form method="POST">
+      <div>{{ input_form_fail }}</div>
+      <div>{{ input_form_success }}</div>
+      {% csrf_token %}
+
+      {{ form.as_p }}
+      <input class='sub' type="submit" value="ログイン">
+   </form>
+</div>
+{% endblock %}

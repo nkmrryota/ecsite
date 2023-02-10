@@ -1,0 +1,82 @@
+.container_all {
+    position: relative;
+    width: 70vw;
+    margin: auto;
+    height: 1em;
+}
+
+.head_font {
+    margin-top: 2%;
+
+}
+
+.head_font h1 {
+    font-size: 2.1vw;
+}
+
+.return {
+    margin-left: 0.5%;
+}
+
+ul{
+    padding-left:0;
+  }
+  
+  li{
+    list-style:none;
+  }
+
+
+
+.list {
+    width: 100%;
+    height: 17em;
+    position:relative;
+    top: 95%;
+    
+}
+
+.list_one img{
+    width: 26%;
+    height: auto;
+}
+
+.list_two {
+    position: absolute;
+    width: 72%;
+    left: 28%;
+    top: 0%;
+}
+
+.list_two a{
+    font-size: 1.1vw;
+}
+
+.list_three {
+    position: absolute;
+    width: 72%;
+    left: 28%;
+    top: 13%;
+}
+
+.list_three h5 {
+    font-size: 1.1vw;
+}
+
+
+.list_four {
+    position: absolute;
+    width: 72%;
+    left: 28%;
+    top: 27%;
+}  
+
+.list_four a {
+    font-size: 0.8vw;
+}  
+
+
+
+/* 
+margin-top: 18%;
+    margin-left: 3%; 
